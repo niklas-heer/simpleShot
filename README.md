@@ -86,3 +86,24 @@ port = 21
 user = youruser
 pw = yourpassword
 ```
+
+## Additional stuff
+
+### A convient index.php script
+You can take this script and put it in the same directory as your screenshot.
+```
+<?php
+
+$fileSize = 0;
+$filesArray = glob('*.{png,jpg}', GLOB_BRACE);
+
+foreach ($filesArray as $file) {
+  $fileSize = $fileSize + (new SplFileInfo($file))->getSize();
+}
+
+echo count($filesArray) . ' Bilder verbrauchen etwa ' . round(($fileSize / 1024) / 1024, 2) . ' MB Speicherplatz.';
+```
+
+which will look like this:
+
+![](assets/screenshot2.png?raw=true)
