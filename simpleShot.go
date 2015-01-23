@@ -23,6 +23,10 @@ import (
 	"time"
 )
 
+var (
+	Debug = false
+)
+
 const (
 	DELAY = 3000
 )
@@ -30,7 +34,7 @@ const (
 func main() {
 	app := cli.NewApp()
 	app.Name = "simpleShot"
-	app.Version = "0.0.1"
+	app.Version = "0.1.0"
 	app.Author = "Niklas Heer"
 	app.Email = "niklas.heer@gmail.com"
 	app.Usage = "Takes a screenshot, uploads it via FTP and copies the url into your clipboard!"
@@ -48,6 +52,10 @@ func main() {
 			Name:  "quiet,q",
 			Usage: "Don't notify me!",
 		},
+		cli.BoolFlag{
+			Name:  "debug,d",
+			Usage: "Enable debugging.",
+		},
 		cli.IntFlag{
 			Name:  "name-length,nl",
 			Value: 6,
@@ -59,12 +67,12 @@ func main() {
 			Usage: "Choose the alphabet for the name generator.",
 		},
 		cli.StringFlag{
-			Name:  "directory,d",
+			Name:  "folder,f",
 			Value: "screenshots",
-			Usage: "Choose the direcotry where the screenshots are saved. (e.g. /home/nh/screenshots)",
+			Usage: "Choose the directory where the screenshots are saved. (e.g. /home/nh/screenshots)",
 		},
 		cli.StringFlag{
-			Name:  "format,f",
+			Name:  "type,t",
 			Value: "jpg",
 			Usage: "Choose the format of the screenshot. (png, jpg...)",
 		},
@@ -83,9 +91,11 @@ func main() {
 			}
 		}{}
 
-		screenPath := getHomeDir() + "/" + c.String("directory")
+		Debug = c.Bool("debug")
+
+		screenPath := getHomeDir() + "/" + c.String("folder")
 		configPath := getHomeDir() + "/.simpleShot.gcfg"
-		fileformat := c.String("format")
+		fileformat := c.String("type")
 		filename := randStr(c.Int("name-length"), c.String("name-alphabet")) + "." + fileformat
 		filepath := screenPath + "/" + filename
 		command := "import -frame "
@@ -100,8 +110,8 @@ func main() {
 		fileurl := cfg.Ftp.Url + filename
 
 		/* Set the user defined path and make the dir if it doesn't exists else only make the default dir if it doesn't exist. */
-		if c.String("directory") != "screenshots" {
-			screenPath = c.String("directory")
+		if c.String("folder") != "screenshots" {
+			screenPath = c.String("folder")
 			makeDir(screenPath)
 		} else {
 			makeDir(screenPath)
@@ -262,7 +272,9 @@ func randStr(strSize int, randType string) string {
 }
 
 func exe_cmd(cmd string, wg *sync.WaitGroup) {
-	fmt.Println("command is ", cmd)
+	if Debug {
+		fmt.Println("command is ", cmd)
+	}
 	// splitting head => g++ parts => rest of the command
 	parts := strings.Fields(cmd)
 	head := parts[0]
@@ -273,6 +285,8 @@ func exe_cmd(cmd string, wg *sync.WaitGroup) {
 		log.Fatal(err)
 	}
 	// DEBUGGING
-	fmt.Printf("%s", out)
+	if Debug {
+		fmt.Printf("%s", out)
+	}
 	wg.Done() // Need to signal to waitgroup that this goroutine is done
 }
