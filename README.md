@@ -1,10 +1,12 @@
 # simpleShot
 
-___Version___: 0.0.1 <br>
+___Version___: 0.1.0 <br>
 ___Author___: Niklas Heer<br>
 ___License___: GPLv3
 
 A simple tool to take screenshots and upload them to an FTP server written in Go.
+
+For recent changes look at the [changelog](https://raw.githubusercontent.com/niklas-heer/simpleShot/master/Changelog).
 
 ```
 $ simpleShot -h
@@ -15,7 +17,7 @@ USAGE:
    simpleShot [global options] command [command options] [arguments...]
 
 VERSION:
-   0.0.1
+   0.1.0
 
 AUTHOR:
   Niklas Heer - <niklas.heer@gmail.com>
@@ -24,15 +26,16 @@ COMMANDS:
    help, h	Shows a list of commands or help for one command
    
 GLOBAL OPTIONS:
-   --select, -s                      Select the area for the screenshot.
-   --upload, -u                      Reads the credentials under ~/.simpleShot.gcfg and uploads it.
-   --quiet, -q                       Don't notify me!
-   --name-length, --nl "6"           Choose the length for the name generator.
-   --name-alphabet, --na "alphanum"  Choose the alphabet for the name generator.
-   --directory, -d "screenshots"     Choose the direcotry where the screenshots are saved. (e.g. /home/nh/screenshots)
-   --format, -f "jpg"                Choose the format of the screenshot. (png, jpg...)
-   --help, -h                        show help
-   --version, -v                     print the version
+   --select, -s                     Select the area for the screenshot.
+   --upload, -u                     Reads the credentials under ~/.simpleShot.gcfg and uploads it.
+   --quiet, -q                      Don't notify me!
+   --debug, -d                      Enable debugging.
+   --name-length, --nl "6"          Choose the length for the name generator.
+   --name-alphabet, --na "alphanum" Choose the alphabet for the name generator.
+   --folder, -f "screenshots"       Choose the directory where the screenshots are saved. (e.g. /home/nh/screenshots)
+   --type, -t "jpg"                 Choose the format of the screenshot. (png, jpg...)
+   --help, -h                       show help
+   --version, -v                    print the version
 ```
 
 
