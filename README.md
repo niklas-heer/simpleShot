@@ -4,7 +4,7 @@ ___Version___: 0.0.1 <br>
 ___Author___: Niklas Heer<br>
 ___License___: GPLv3
 
-A simple tool to take screenshots and upload them to an FTP server.
+A simple tool to take screenshots and upload them to an FTP server written in Go.
 
 ```
 $ simpleShot -h
@@ -68,6 +68,20 @@ wget https://raw.github.com/niklas-heer/simpleShot/master/simpleShot
 chmod +x simpleShot
 mkdir ~/bin
 mv simpleShot ~/bin/
+```
+
+#### From source
+I assume that you have a working Go-Environment.
+```
+go get code.google.com/p/ftp4go
+go get code.google.com/p/gcfg
+go get github.com/atotto/clipboard
+go get github.com/codegangsta/cli
+go get github.com/lenormf/go-notify
+go get github.com/niklas-heer/simpleShot
+cd $GOPATH/src/github.com/niklas-heer/simpleShot
+go build
+go install
 ```
 
 Now you can bind it to an keyboard shortcut in your Preferences. This could look like this:
