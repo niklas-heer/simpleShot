@@ -4,7 +4,9 @@ ___Version___: 0.1.0 <br>
 ___Author___: Niklas Heer<br>
 ___License___: GPLv3
 
-A simple tool to take screenshots and upload them to an FTP server written in Go.
+A simple tool to take screenshots and upload them to an FTP server written in [Go](https://golang.org/).
+
+This project is uses [semantic versioning](http://semver.org/).
 
 For recent changes look at the [changelog](https://raw.githubusercontent.com/niklas-heer/simpleShot/master/Changelog).
 
