@@ -1,6 +1,6 @@
 # simpleShot
 
-___Version___: 0.1.0 <br>
+___Version___: 0.2.0 <br>
 ___Author___: Niklas Heer<br>
 ___License___: GPLv3
 
@@ -11,6 +11,7 @@ This project is uses [semantic versioning](http://semver.org/).
 For recent changes look at the [change log](https://github.com/niklas-heer/simpleShot/blob/master/CHANGELOG.md).<br>
 This project supports the effort of [keepachangelog.com](http://keepachangelog.com/) and follows its guidelines in the change log. We are also using [chag](https://github.com/mtdowling/chag) to automate the process.
 
+
 ```
 $ simpleShot -h
 NAME:
@@ -20,7 +21,7 @@ USAGE:
    simpleShot [global options] command [command options] [arguments...]
 
 VERSION:
-   0.1.0
+   0.2.0
 
 AUTHOR:
   Niklas Heer - <niklas.heer@gmail.com>
@@ -103,12 +104,16 @@ There is not much to configure but if you want to upload to an FTP server you ne
 It should look like this:
 ```
 [ftp]
-url = http://screens.your-server.org/
+url = http://screens.your-server.org/with/folder/
 server = your-server.org
+path = path/to/files
 port = 21
 user = youruser
 pw = yourpassword
 ```
+
+Note:<br>
+`path` is only needed if you don't want to save the files in the root directory of your web-server!
 
 ## Additional stuff
 

@@ -1,9 +1,3 @@
-/*
-	Linux needed packages:
-	imagemagick
-	xclip
-*/
-
 package main
 
 import (
@@ -34,7 +28,7 @@ const (
 func main() {
 	app := cli.NewApp()
 	app.Name = "simpleShot"
-	app.Version = "0.1.0"
+	app.Version = "0.2.0"
 	app.Author = "Niklas Heer"
 	app.Email = "niklas.heer@gmail.com"
 	app.Usage = "Takes a screenshot, uploads it via FTP and copies the url into your clipboard!"
@@ -86,6 +80,7 @@ func main() {
 				Url    string
 				Server string
 				Port   int
+				Path   string
 				User   string
 				Pw     string
 			}
@@ -135,7 +130,7 @@ func main() {
 		if c.Bool("upload") {
 
 			// Upload the file
-			uploadFTP(cfg.Ftp.Port, cfg.Ftp.Server, cfg.Ftp.User, cfg.Ftp.Pw, filepath, filename)
+			uploadFTP(cfg.Ftp.Port, cfg.Ftp.Server, cfg.Ftp.User, cfg.Ftp.Pw, cfg.Ftp.Path, filepath, filename)
 
 			// Copy url to clipboard
 			copyToClipboard(fileurl)
@@ -180,15 +175,22 @@ func sendNotification(text string) {
 	}
 
 	time.Sleep(DELAY * 1000000)
+
 	// info.Close()
 	notify.NotificationClose(info)
 
 	notify.UnInit()
 }
 
-func uploadFTP(port int, server, user, pw, filepath, name string) {
+func uploadFTP(port int, server, user, pw, serverpath, filepath, name string) {
 
-	ftpClient := ftp4go.NewFTP(0) // 1 for debugging
+	debugNum := 0
+
+	if Debug {
+		debugNum = 1
+	}
+
+	ftpClient := ftp4go.NewFTP(debugNum) // 1 for debugging
 
 	//connect
 	_, err := ftpClient.Connect(server, port, "")
@@ -200,6 +202,14 @@ func uploadFTP(port int, server, user, pw, filepath, name string) {
 	_, err = ftpClient.Login(user, pw, "")
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	//go into the right folder
+	if serverpath != "" {
+		_, err = ftpClient.Cwd(serverpath)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	// upload
