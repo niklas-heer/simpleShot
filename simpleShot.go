@@ -162,26 +162,26 @@ func copyToClipboard(text string) {
 func sendNotification(text string) {
 
 	notify.Init("simpleShot")
-	hello := notify.NotificationNew("simpleShot",
+	info := notify.NotificationNew("simpleShot",
 		text,
 		"")
 
-	if hello == nil {
+	if info == nil {
 		fmt.Fprintf(os.Stderr, "Unable to create a new notification\n")
 		return
 	}
-	// hello.SetTimeout(3000)
-	notify.NotificationSetTimeout(hello, DELAY)
+	// info.SetTimeout(3000)
+	notify.NotificationSetTimeout(info, DELAY)
 
-	// hello.Show()
-	if e := notify.NotificationShow(hello); e != nil {
+	// info.Show()
+	if e := notify.NotificationShow(info); e != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", e.Message())
 		return
 	}
 
 	time.Sleep(DELAY * 1000000)
-	// hello.Close()
-	notify.NotificationClose(hello)
+	// info.Close()
+	notify.NotificationClose(info)
 
 	notify.UnInit()
 }
