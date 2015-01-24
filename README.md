@@ -112,7 +112,7 @@ pw = yourpassword
 ## Additional stuff
 
 ### A convient index.php script
-You can take this script and put it in the same directory as your screenshot.
+You can take this script and put it in the same directory as your screenshots.
 ```
 <?php
 
