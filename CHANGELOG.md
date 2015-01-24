@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. This projec
 ## 0.2.0 - 2015-01-24
 ### Added
 - The ability to define a `path` on the web-server was added to the `.simpleShot.gcfg` file. This parameter is optional!
-- Added debugging messages for the `--upload -u` flag. If debugging the of the FTP connection is needed.
+- Added debugging messages for the `--upload -u` flag. If debugging of the FTP connection is needed.
 
 ## 0.1.0 - 2015-01-23
 ### Added
