@@ -41,6 +41,9 @@ GLOBAL OPTIONS:
 ```
 
 
+Note:<br>
+This program is still in its early development phase and while it's not being released as "1.0.0" flags might be renamed or changed.
+
 ## Installation
 
 
