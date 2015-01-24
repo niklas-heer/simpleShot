@@ -1,7 +1,0 @@
-v0.1.0
-- added d, debug flag to enable debugging messages
-- renamed format,f to type, t
-- renamed diretory,d to folder, f
-
-v0.0.1
-inital release
