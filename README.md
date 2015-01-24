@@ -8,7 +8,7 @@ A simple tool to take screenshots and upload them to an FTP server written in [G
 
 This project is uses [semantic versioning](http://semver.org/).
 
-For recent changes look at the [change log](https://github.com/niklas-heer/simpleShot/blob/master/README.md).<br>
+For recent changes look at the [change log](https://github.com/niklas-heer/simpleShot/blob/master/CHANGELOG.md).<br>
 This project supports the effort of [keepachangelog.com](http://keepachangelog.com/) and follows its guidelines in the change log. We are also using [chag](https://github.com/mtdowling/chag) to automate the process.
 
 ```
