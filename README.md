@@ -64,12 +64,14 @@ In order to use the programm you need the following programms install on your GN
 ### 2. Installing simpleShot
 
 #### Global
+
+One easy installation method is through cURL using the following:
+
 ```
-cd ~/Downloads
-wget https://raw.github.com/niklas-heer/simpleShot/master/simpleShot
-chmod +x simpleShot
-sudo mv simpleShot /usr/local/bin/
+su -c "curl -s https://raw.githubusercontent.com/niklas-heer/simpleShot/master/install.sh | bash"
 ```
+
+You can customize the install source, directory and profile using the SIMPLESHOT_DIR and SIMPLESHOT_VERSION environment variables. The script will place simpleShot in /usr/local/bin by default.
 
 #### As a script
 ```
