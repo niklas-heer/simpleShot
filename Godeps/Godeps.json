@@ -1,0 +1,38 @@
+{
+	"ImportPath": "github.com/niklas-heer/simpleShot",
+	"GoVersion": "go1.4.1",
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/ftp4go",
+			"Comment": "null-34",
+			"Rev": "15e7ccba78ecc55b3b857c503a93000f0d521225"
+		},
+		{
+			"ImportPath": "code.google.com/p/gcfg",
+			"Rev": "c2d3050044d05357eaf6c3547249ba57c5e235cb"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.net/proxy",
+			"Comment": "null-240",
+			"Rev": "937a34c9de13c766c814510f76bca091dee06028"
+		},
+		{
+			"ImportPath": "github.com/atotto/clipboard",
+			"Rev": "dfde2702d61cc95071f9def0fe9fc47d43136d6d"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.2.0-62-gbf4a526",
+			"Rev": "bf4a526f48af7badd25d2cb02d587e1b01be3b50"
+		},
+		{
+			"ImportPath": "github.com/lenormf/go-notify",
+			"Rev": "1f9c015b8f9feb9868e69c3e484bcc15d5da2eba"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-gtk/glib",
+			"Comment": "release-0.1-540-gf02444e",
+			"Rev": "f02444e71054de0513df84f89c434abc99ab75d8"
+		}
+	]
+}

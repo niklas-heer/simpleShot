@@ -63,7 +63,7 @@ In order to use the programm you need the following programms install on your GN
 
 ### 2. Installing simpleShot
 
-#### Global
+#### Global (recommended)
 
 One easy installation method is through cURL using the following:
 
@@ -83,15 +83,13 @@ mv simpleShot ~/bin/
 ```
 
 #### From source
-I assume that you have a working Go-Environment.
+This tool assumes you are working in a standard Go workspace, as described in [http://golang.org/doc/code.html](http://golang.org/doc/code.html).
+
 ```
-go get code.google.com/p/ftp4go
-go get code.google.com/p/gcfg
-go get github.com/atotto/clipboard
-go get github.com/codegangsta/cli
-go get github.com/lenormf/go-notify
+go get github.com/tools/godep
 go get github.com/niklas-heer/simpleShot
 cd $GOPATH/src/github.com/niklas-heer/simpleShot
+godep restore
 go build
 go install
 ```
