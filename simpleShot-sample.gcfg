@@ -1,0 +1,13 @@
+; Sample Config File for simpleShot
+;
+; If you want to use the upload function please edit it.
+; For more infos read:
+; https://github.com/niklas-heer/simpleShot/tree/master#3-configuration
+
+[Upload]
+url = http://screens.your-server.org/with/folder/
+server = your-server.org
+path = path/to/files
+port = 21
+user = youruser
+pw = yourpassword
