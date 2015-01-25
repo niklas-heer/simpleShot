@@ -23,6 +23,25 @@ su -c "curl -s https://raw.githubusercontent.com/niklas-heer/simpleShot/master/i
 
 ---
 
+## Configuration
+
+There is not much to configure but if you want to upload to an FTP server you need to edit your config file at `~/.simpleShot.gcfg`.
+It should look like this:
+{% highlight cfg%}
+[ftp]
+url = http://screens.your-server.org/with/folder/
+server = your-server.org
+path = path/to/files
+port = 21
+user = youruser
+pw = yourpassword
+{% endhighlight %}
+
+Note:<br>
+`path` is only needed if you don't want to save the files in the root directory of your web-server!
+
+---
+
 ## Usage
 The command line interface:
 {% highlight console%}

@@ -50,6 +50,24 @@
 
 <hr />
 
+<h2 id="configuration">Configuration</h2>
+
+<p>There is not much to configure but if you want to upload to an FTP server you need to edit your config file at <code>~/.simpleShot.gcfg</code>.
+It should look like this:</p>
+
+<div class="highlight"><pre><code class="language-cfg" data-lang="cfg"><span class="k">[ftp]</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">http://screens.your-server.org/with/folder/</span>
+<span class="na">server</span> <span class="o">=</span> <span class="s">your-server.org</span>
+<span class="na">path</span> <span class="o">=</span> <span class="s">path/to/files</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">21</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">youruser</span>
+<span class="na">pw</span> <span class="o">=</span> <span class="s">yourpassword</span></code></pre></div>
+
+<p>Note:<br />
+<code>path</code> is only needed if you don’t want to save the files in the root directory of your web-server!</p>
+
+<hr />
+
 <h2 id="usage">Usage</h2>
 <p>The command line interface:</p>
 
