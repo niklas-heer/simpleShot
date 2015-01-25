@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Simpleshot by niklas-heer</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Simpleshot</h1>
+        <p>A simple tool to take screenshots and upload them.</p>
+        <p class="view"><a href="https://github.com/niklas-heer/simpleShot">View the Project on GitHub <small>niklas-heer/simpleShot</small></a></p>
+        <ul>
+          <li><a href="https://github.com/niklas-heer/simpleShot/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/niklas-heer/simpleShot/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/niklas-heer/simpleShot">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+        <h2 id="description">Description</h2>
+<p>simpleShot is a simple tool to take quick screenshots and upload them so that you can share them easily.</p>
+
+<hr />
+
+<h2 id="install">Install</h2>
+<p>Often the dependencies are already installed on your system, but maybe you also need to install them:</p>
+
+<h4 id="archlinuxantergosmanjaro">Archlinux/Antergos/Manjaro</h4>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo pacman -S xclip imagemagick</span></code></pre></div>
+
+<h4 id="ubuntulinux-mint">Ubuntu/Linux Mint</h4>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install xclip imagemagick</span></code></pre></div>
+
+<p>After that’s done installing <strong>simpleShot</strong> is easy:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">su -c <span class="s2">&quot;curl -s https://raw.githubusercontent.com/niklas-heer/simpleShot/master/install.sh | bash&quot;</span></code></pre></div>
+
+<hr />
+
+<h2 id="usage">Usage</h2>
+<p>The command line interface:</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">$</span> simpleShot -h
+<span class="go">NAME:</span>
+<span class="go">   simpleShot - Takes a screenshot, uploads it via FTP and copies the url into your clipboard!</span>
+
+<span class="go">USAGE:</span>
+<span class="go">   simpleShot [global options] command [command options] [arguments...]</span>
+
+<span class="go">VERSION:</span>
+<span class="go">   0.2.0</span>
+
+<span class="go">AUTHOR:</span>
+<span class="go">  Niklas Heer - &lt;niklas.heer@gmail.com&gt;</span>
+
+<span class="go">COMMANDS:</span>
+<span class="go">   help, h  Shows a list of commands or help for one command</span>
+<span class="go">   </span>
+<span class="go">GLOBAL OPTIONS:</span>
+<span class="go">   --select, -s                     Select the area for the screenshot.</span>
+<span class="go">   --upload, -u                     Reads the credentials under ~/.simpleShot.gcfg and uploads it.</span>
+<span class="go">   --quiet, -q                      Don&#39;t notify me!</span>
+<span class="go">   --debug, -d                      Enable debugging.</span>
+<span class="go">   --name-length, --nl &quot;6&quot;          Choose the length for the name generator.</span>
+<span class="go">   --name-alphabet, --na &quot;alphanum&quot; Choose the alphabet for the name generator.</span>
+<span class="go">   --folder, -f &quot;screenshots&quot;       Choose the directory where the screenshots are saved. (e.g. /home/nh/screenshots)</span>
+<span class="go">   --type, -t &quot;jpg&quot;                 Choose the format of the screenshot. (png, jpg...)</span>
+<span class="go">   --help, -h                       show help</span>
+<span class="go">   --version, -v                    print the version</span></code></pre></div>
+
+<hr />
+
+<h2 id="changelog">Changelog</h2>
+
+<h3 id="section"><strong>0.2.0</strong> - 2015-01-24</h3>
+
+<h4 id="added">Added</h4>
+<ul>
+  <li>The ability to define a <code>path</code> on the web-server was added to the <code>.simpleShot.gcfg</code> file. This parameter is optional!</li>
+  <li>Added debugging messages for the <code>--upload -u</code> flag. If debugging of the FTP connection is needed.</li>
+</ul>
+
+<h3 id="section-1"><strong>0.1.0</strong> - 2015-01-23</h3>
+
+<h4 id="added-1">Added</h4>
+<ul>
+  <li>The <code>--debug -d</code> flag was added to easily display debugging messages. Probably only interesting for developing this tool.</li>
+</ul>
+
+<h4 id="changed">Changed</h4>
+<ul>
+  <li>Renamed the <code>--format -f</code> flag to <code>--type -t</code>.</li>
+  <li>Renamed the <code>--directory -d</code> flag to <code>--folder -f</code>.</li>
+</ul>
+
+<h3 id="section-2"><strong>0.0.1</strong> - 2015-01-23</h3>
+<p>initial release.</p>
+
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/niklas-heer">niklas-heer</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-27512118-7");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>
