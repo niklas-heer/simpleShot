@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-if [[ ! $(whoami) = "root" ]]; then
-	echo "Please run the script as root."
-	exit 1
-fi
-
 [ -z "$SIMPLESHOT_DIR" ] && SIMPLESHOT_DIR="/usr/local/bin"
 [ -z "$SIMPLESHOT_VERSION" ] && SIMPLESHOT_VERSION="master"
 [ -z "$SIMPLESHOT_CONF_DIR" ] && SIMPLESHOT_CONF_DIR="$HOME"
