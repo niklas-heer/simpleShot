@@ -2,18 +2,11 @@
 set -e
 
 [ -z "$SIMPLESHOT_DIR" ] && SIMPLESHOT_DIR="/usr/local/bin"
+[ -z "$SIMPLESHOT_VERSION" ] && SIMPLESHOT_VERSION="master"
 [ -z "$SIMPLESHOT_CONF_DIR" ] && SIMPLESHOT_CONF_DIR="$HOME"
 
-# Enable it if you want the latest and greatest
-#[ -z "$SIMPLESHOT_VERSION" ] && SIMPLESHOT_VERSION="master"
-#SIMPLESHOT_SOURCE="https://raw.githubusercontent.com/niklas-heer/simpleShot/$SIMPLESHOT_VERSION/simpleShot"
-#SIMPLESHOT_CONF_SOURCE="https://raw.githubusercontent.com/niklas-heer/simpleShot/$SIMPLESHOT_VERSION/simpleShot-sample.gcfg"
-
-# This might be more stable
-[ -z "$SIMPLESHOT_VERSION" ] && SIMPLESHOT_VERSION="0.2.0"
-SIMPLESHOT_SOURCE="https://github.com/niklas-heer/simpleShot/releases/download/$SIMPLESHOT_VERSION/simpleShot"
-SIMPLESHOT_CONF_SOURCE="https://github.com/niklas-heer/simpleShot/releases/download/$SIMPLESHOT_VERSION/simpleShot-sample.gcfg"
-
+SIMPLESHOT_SOURCE="https://raw.githubusercontent.com/niklas-heer/simpleShot/$SIMPLESHOT_VERSION/simpleShot"
+SIMPLESHOT_CONF_SOURCE="https://raw.githubusercontent.com/niklas-heer/simpleShot/$SIMPLESHOT_VERSION/simpleShot-sample.gcfg"
 
 echo "=> Downloading simpleShot to '$SIMPLESHOT_DIR'"
 sudo curl -sS "$SIMPLESHOT_SOURCE" -o "$SIMPLESHOT_DIR/simpleShot" || {
