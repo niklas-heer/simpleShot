@@ -6,10 +6,10 @@ ___License___: GPLv3
 
 A simple tool to take screenshots and upload them, written in [Go](https://golang.org/).
 
-This project is uses [semantic versioning](http://semver.org/).
+This project uses [semantic versioning](http://semver.org/).
 
 For recent changes look at the [change log](https://github.com/niklas-heer/simpleShot/blob/master/CHANGELOG.md).<br>
-This project supports the effort of [keepachangelog.com](http://keepachangelog.com/) and follows its guidelines in the change log. We are also using [chag](https://github.com/mtdowling/chag) to automate the process.
+This project supports the effort of [keepachangelog.com](http://keepachangelog.com/) and follows its guidelines. We are also using [chag](https://github.com/mtdowling/chag) to automate the process.
 
 
 ```
@@ -44,13 +44,13 @@ GLOBAL OPTIONS:
 
 
 Note:<br>
-This program is still in its early development phase and while it's not being released as "1.0.0" flags might be renamed or changed.
+This program is still in its early stages. So there might be breaking changes!
 
 ## Installation
 
 
 ### 1. Getting the requirements
-In order to use the programm you need the following programms install on your GNU/Linux box:
+To use the programm you need the following programms installed on your GNU/Linux box:
 
 * imagemagick
 * xclip
@@ -71,7 +71,7 @@ One easy installation method is through cURL using the following:
 curl -s https://raw.githubusercontent.com/niklas-heer/simpleShot/master/install.sh | sh
 ```
 
-You can customize the install source, directory and profile using the SIMPLESHOT_DIR and SIMPLESHOT_VERSION environment variables. The script will place simpleShot in /usr/local/bin by default.
+You may want to change `SIMPLESHOT_DIR` and `SIMPLESHOT_VERSION` to your likings. The script will place simpleShot in `/usr/local/bin` by default.
 
 #### As a script
 ```
@@ -83,7 +83,7 @@ mv simpleShot ~/bin/
 ```
 
 #### From source
-This tool assumes you are working in a standard Go workspace, as described in [http://golang.org/doc/code.html](http://golang.org/doc/code.html).
+This tool assumes you have a working Go environment. As described in [http://golang.org/doc/code.html](http://golang.org/doc/code.html).
 
 ```
 go get github.com/tools/godep
@@ -115,10 +115,10 @@ pw = yourpassword
 Note:<br>
 `path` is only needed if you don't want to save the files in the root directory of your web-server!
 
-## Additional stuff
+## Extra stuff
 
 ### A convient index.php script
-You can take this script and put it in the same directory as your screenshots.
+You can take this script and put it in the same directory, where your screenshots will be uploaded to.
 ```
 <?php
 

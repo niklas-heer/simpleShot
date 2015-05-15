@@ -25,6 +25,9 @@ const (
 	DELAY = 3000
 )
 
+/**
+ * The main function of the program.
+ */
 func main() {
 	app := cli.NewApp()
 	app.Name = "simpleShot"
@@ -74,7 +77,7 @@ func main() {
 
 	app.Action = func(c *cli.Context) {
 
-		// Config structure
+		// config structure
 		cfg := struct {
 			Ftp struct {
 				Url    string
@@ -199,13 +202,13 @@ func sendNotification(text string) {
 /**
  * Uploads a given file via FTP to a given server.
  * 
- * @param port -
- * @param server -
- * @param user -
- * @param pw -
- * @param serverpath -
- * @param filepath -
- * @param name -
+ * @param port - the port of the FTP server.
+ * @param server - the adress of the FTP server. (IP or domain name)
+ * @param user - the username to log into the FTP server.
+ * @param pw - the password to log into the FTP server.
+ * @param serverpath - the path on the FTP server, where the file will be stored.
+ * @param filepath - the local path to the file, which will be uploaded.
+ * @param name - the name of the file which will be uploaded.
  */
 func uploadFTP(port int, server, user, pw, serverpath, filepath, name string) {
 
@@ -249,6 +252,31 @@ func uploadFTP(port int, server, user, pw, serverpath, filepath, name string) {
 	defer ftpClient.Quit()
 }
 
+/**
+ * Checks if a given file or directory already exists.
+ * 
+ * @param path - the path to the file or directory which will be checked.
+ *
+ * @returns whether the given file or directory exists or not. (true or false)
+ */
+func exists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+
+/**
+ * Creates a directory in the specified path, if it doesn't exist already.
+ * 
+ * @param dirPath - the path to the directory, which will be created.
+ *
+ * @note It will also create all parent directories if thez don't exist.
+ */
 func makeDir(dirPath string) {
 	exists, err := exists(dirPath)
 
@@ -268,6 +296,11 @@ func makeDir(dirPath string) {
 	}
 }
 
+/**
+ * Gets the full path to the home directory of the current user.
+ *
+ * @returns the full path to the home directory of the current user as string.
+ */
 func getHomeDir() string {
 	usr, err := user.Current()
 
@@ -278,18 +311,14 @@ func getHomeDir() string {
 	return usr.HomeDir
 }
 
-// exists returns whether the given file or directory exists or not
-func exists(path string) (bool, error) {
-	_, err := os.Stat(path)
-	if err == nil {
-		return true, nil
-	}
-	if os.IsNotExist(err) {
-		return false, nil
-	}
-	return false, err
-}
-
+/**
+ * Generates a random string.
+ * 
+ * @param strSize - the length of the string which will be generated.
+ * @param randType - the dictionary which conatins the character, which will be used. (alpha, number and alphanum)
+ *
+ * @returns the the randomly genarted string.
+ */
 func randStr(strSize int, randType string) string {
 	var dictionary string
 
@@ -314,6 +343,14 @@ func randStr(strSize int, randType string) string {
 	return string(bytes)
 }
 
+/**
+ * Executes a given command.
+ * 
+ * @param cmd - the command which will be executed. (e.g. "ls -al")
+ * @param wg - the Waitgroup, which is needed to execute the goroutine. (wg := new(sync.WaitGroup))
+ *
+ * @note atm it's only desinged to execute GNU/Linux commands. Although Unix commands might also work.
+ */
 func exe_cmd(cmd string, wg *sync.WaitGroup) {
 	if Debug {
 		fmt.Println("command is ", cmd)
