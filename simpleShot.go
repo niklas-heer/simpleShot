@@ -88,14 +88,15 @@ func main() {
 
 		Debug = c.Bool("debug")
 
-		screenPath := getHomeDir() + "/" + c.String("folder")
-		configPath := getHomeDir() + "/.simpleShot.gcfg"
-		fileformat := c.String("type")
-		filename := randStr(c.Int("name-length"), c.String("name-alphabet")) + "." + fileformat
-		filepath := screenPath + "/" + filename
-		command := "import -frame "
+		// initalize and declare the needed variables
+		screenPath 	:= getHomeDir() + "/" + c.String("folder")
+		configPath 	:= getHomeDir() + "/.simpleShot.gcfg"
+		fileformat 	:= c.String("type")
+		filename 	:= randStr(c.Int("name-length"), c.String("name-alphabet")) + "." + fileformat
+		filepath 	:= screenPath + "/" + filename
+		command 	:= "import -frame "
 
-		// Read Config file
+		// read the config file
 		err := gcfg.ReadFileInto(&cfg, configPath)
 		if err != nil {
 			log.Fatal(err)
@@ -104,7 +105,9 @@ func main() {
 		// make a unified file url
 		fileurl := cfg.Ftp.Url + filename
 
-		/* Set the user defined path and make the dir if it doesn't exists else only make the default dir if it doesn't exist. */
+		
+		// set the user defined path.
+		// create the directory, if it doesn't exists.
 		if c.String("folder") != "screenshots" {
 			screenPath = c.String("folder")
 			makeDir(screenPath)
@@ -112,12 +115,12 @@ func main() {
 			makeDir(screenPath)
 		}
 
-		/* Behavior for selection option */
+		// behavior for the selection option 
 		if c.Bool("select") {
 			command = "import -frame "
 		}
 
-		// Take the screenshot
+		// take a screenshot
 		wg := new(sync.WaitGroup)
 		commands := []string{command + filepath}
 		for _, str := range commands {
@@ -126,19 +129,20 @@ func main() {
 		}
 		wg.Wait()
 
-		/* Upload if the option is set */
+		// upload if the option is set
 		if c.Bool("upload") {
 
-			// Upload the file
+			// upload the file
 			uploadFTP(cfg.Ftp.Port, cfg.Ftp.Server, cfg.Ftp.User, cfg.Ftp.Pw, cfg.Ftp.Path, filepath, filename)
 
-			// Copy url to clipboard
+			// copy url to clipboard
 			copyToClipboard(fileurl)
 		}
 
+		// send notifications if the option "quiet" is NOT set
 		if !c.Bool("quiet") {
 
-			//if we uploaded picture send special notification else send default one
+			// if we uploaded the picture send a special notification, else send the default one
 			if c.Bool("upload") {
 				sendNotification("The images url was copied to the clipboard and uploaded to: " + fileurl)
 			} else {
@@ -150,25 +154,35 @@ func main() {
 	app.Run(os.Args)
 }
 
+/**
+ * Copies the given text into the clipboard
+ * 
+ * @param text to be copied into the clipboard
+ */
 func copyToClipboard(text string) {
 	clipboard.WriteAll(text)
 }
 
+/**
+ * Sends the given text as desktop notification
+ * 
+ * @param text which will be send as notification
+ */
 func sendNotification(text string) {
 
 	notify.Init("simpleShot")
-	info := notify.NotificationNew("simpleShot",
-		text,
-		"")
+	info := notify.NotificationNew("simpleShot", text, "")
 
+	// send error message if needed
 	if info == nil {
 		fmt.Fprintf(os.Stderr, "Unable to create a new notification\n")
 		return
 	}
-	// info.SetTimeout(3000)
+
+	// set the timeout for the notification
 	notify.NotificationSetTimeout(info, DELAY)
 
-	// info.Show()
+	// show the notification
 	if e := notify.NotificationShow(info); e != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", e.Message())
 		return
@@ -176,35 +190,48 @@ func sendNotification(text string) {
 
 	time.Sleep(DELAY * 1000000)
 
-	// info.Close()
+	// close the notification
 	notify.NotificationClose(info)
 
 	notify.UnInit()
 }
 
+/**
+ * Uploads a given file via FTP to a given server.
+ * 
+ * @param port -
+ * @param server -
+ * @param user -
+ * @param pw -
+ * @param serverpath -
+ * @param filepath -
+ * @param name -
+ */
 func uploadFTP(port int, server, user, pw, serverpath, filepath, name string) {
 
 	debugNum := 0
 
+	// enable debugging if the option is set
 	if Debug {
 		debugNum = 1
 	}
 
-	ftpClient := ftp4go.NewFTP(debugNum) // 1 for debugging
+	// 1 for debugging
+	ftpClient := ftp4go.NewFTP(debugNum) 
 
-	//connect
+	// connect
 	_, err := ftpClient.Connect(server, port, "")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	//login
+	// login
 	_, err = ftpClient.Login(user, pw, "")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	//go into the right folder
+	// go into the right folder
 	if serverpath != "" {
 		_, err = ftpClient.Cwd(serverpath)
 		if err != nil {
@@ -212,20 +239,24 @@ func uploadFTP(port int, server, user, pw, serverpath, filepath, name string) {
 		}
 	}
 
-	// upload
+	// upload the file
 	err = ftpClient.UploadFile(name, filepath, true, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// close the connection
 	defer ftpClient.Quit()
 }
 
 func makeDir(dirPath string) {
 	exists, err := exists(dirPath)
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// only make the directory if it doesn't exists already
 	if !exists {
 		wg := new(sync.WaitGroup)
 		commands := []string{"mkdir -p " + dirPath}
@@ -239,9 +270,11 @@ func makeDir(dirPath string) {
 
 func getHomeDir() string {
 	usr, err := user.Current()
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	return usr.HomeDir
 }
 
@@ -285,6 +318,7 @@ func exe_cmd(cmd string, wg *sync.WaitGroup) {
 	if Debug {
 		fmt.Println("command is ", cmd)
 	}
+
 	// splitting head => g++ parts => rest of the command
 	parts := strings.Fields(cmd)
 	head := parts[0]
@@ -294,9 +328,12 @@ func exe_cmd(cmd string, wg *sync.WaitGroup) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	// DEBUGGING
 	if Debug {
 		fmt.Printf("%s", out)
 	}
-	wg.Done() // Need to signal to waitgroup that this goroutine is done
+
+	// need to signal to the waitgroup that this goroutine is done
+	wg.Done() 
 }
