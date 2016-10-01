@@ -18,7 +18,7 @@ sudo apt-get install xclip imagemagick
 
 After that's done installing __simpleShot__ is easy:
 {% highlight bash%}
-curl -s https://raw.githubusercontent.com/niklas-heer/simpleShot/master/install.sh | sh
+curl -s https://git.io/vPtHi | sh
 {% endhighlight %}
 
 ---
