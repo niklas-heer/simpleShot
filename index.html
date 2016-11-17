@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Simpleshot by niklas-heer</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Simpleshot</h1>
+        <p class="header">A simple tool to take screenshots and upload them.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/niklas-heer/simpleShot/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/niklas-heer/simpleShot/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/niklas-heer/simpleShot">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/niklas-heer">niklas-heer</a></p>
+
+
+      </header>
+      <section>
+        <h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h2>
+
+<p>simpleShot is a simple tool to take quick screenshots and upload them so that you can share them easily.</p>
+
+<hr>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p>Often the dependencies are already installed on your system, but maybe you also need to install them:</p>
+
+<h4>
+<a id="archlinuxantergosmanjaro" class="anchor" href="#archlinuxantergosmanjaro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Archlinux/Antergos/Manjaro</h4>
+
+<pre><code>sudo pacman -S xclip imagemagick
+</code></pre>
+
+<h4>
+<a id="ubuntulinux-mint" class="anchor" href="#ubuntulinux-mint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ubuntu/Linux Mint</h4>
+
+<pre><code>sudo apt-get install xclip imagemagick
+</code></pre>
+
+<p>After that's done installing <strong>simpleShot</strong> is easy:</p>
+
+<pre><code>curl -s https://git.io/vPtHi | sh
+</code></pre>
+
+<hr>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>There is not much to configure but if you want to upload to an FTP server you need to edit your config file at <code>~/.simpleShot.gcfg</code>.
+It should look like this:</p>
+
+<pre><code>[ftp]
+url = http://screens.your-server.org/with/folder/
+server = your-server.org
+path = path/to/files
+port = 21
+user = youruser
+pw = yourpassword
+</code></pre>
+
+<p>Note:<br>
+<code>path</code> is only needed if you don't want to save the files in the root directory of your web-server!</p>
+
+<hr>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The command line interface:</p>
+
+<pre><code>$ simpleShot -h
+NAME:
+   simpleShot - Takes a screenshot, uploads it via FTP and copies the url into your clipboard!
+
+USAGE:
+   simpleShot [global options] command [command options] [arguments...]
+
+VERSION:
+   0.2.0
+
+AUTHOR:
+  Niklas Heer - &lt;niklas.heer@gmail.com&gt;
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --select, -s                     Select the area for the screenshot.
+   --upload, -u                     Reads the credentials under ~/.simpleShot.gcfg and uploads it.
+   --quiet, -q                      Don't notify me!
+   --debug, -d                      Enable debugging.
+   --name-length, --nl "6"          Choose the length for the name generator.
+   --name-alphabet, --na "alphanum" Choose the alphabet for the name generator.
+   --folder, -f "screenshots"       Choose the directory where the screenshots are saved. (e.g. /home/nh/screenshots)
+   --type, -t "jpg"                 Choose the format of the screenshot. (png, jpg...)
+   --help, -h                       show help
+   --version, -v                    print the version
+</code></pre>
+
+<hr>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h3>
+<a id="020---2015-01-24" class="anchor" href="#020---2015-01-24" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>0.2.0</strong> - 2015-01-24</h3>
+
+<h4>
+<a id="added" class="anchor" href="#added" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Added</h4>
+
+<ul>
+<li>The ability to define a <code>path</code> on the web-server was added to the <code>.simpleShot.gcfg</code> file. This parameter is optional!</li>
+<li>Added debugging messages for the <code>--upload -u</code> flag. If debugging of the FTP connection is needed.</li>
+</ul>
+
+<h3>
+<a id="010---2015-01-23" class="anchor" href="#010---2015-01-23" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>0.1.0</strong> - 2015-01-23</h3>
+
+<h4>
+<a id="added-1" class="anchor" href="#added-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Added</h4>
+
+<ul>
+<li>The <code>--debug -d</code> flag was added to easily display debugging messages. Probably only interesting for developing this tool.</li>
+</ul>
+
+<h4>
+<a id="changed" class="anchor" href="#changed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changed</h4>
+
+<ul>
+<li>Renamed the <code>--format -f</code> flag to <code>--type -t</code>.</li>
+<li>Renamed the <code>--directory -d</code> flag to <code>--folder -f</code>.</li>
+</ul>
+
+<h3>
+<a id="001---2015-01-23" class="anchor" href="#001---2015-01-23" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>0.0.1</strong> - 2015-01-23</h3>
+
+<p>initial release.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-27512118-7");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
